@@ -938,3 +938,54 @@ tr:hover td {
     grid-template-columns: 1fr;
   }
 }
+/* ── Alt path banner (upload page) ─────────────────────────── */
+.alt-path-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f0f7ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.alt-path-banner__link {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.alt-path-banner__link:hover {
+  text-decoration: underline;
+}
+
+/* ── Quote credit footer ────────────────────────────────────── */
+.quote-credit {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  margin-top: 1.25rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.quote-credit strong {
+  color: #111827;
+}
+
+.quote-credit a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.quote-credit a:hover {
+  text-decoration: underline;
+}

@@ -16,7 +16,6 @@ const logout = () => {
 const showErrors = (errors) => {
   const msg = document.getElementById('errorMsg');
   const list = document.getElementById('errorList');
-
   list.innerHTML = '';
   if (Array.isArray(errors)) {
     errors.forEach((e) => {
@@ -29,7 +28,6 @@ const showErrors = (errors) => {
     li.textContent = errors;
     list.appendChild(li);
   }
-
   msg.classList.remove('hidden');
 };
 
@@ -39,11 +37,14 @@ const hideErrors = () => {
 
 const init = () => {
   if (!requireAuth()) return;
-
   document.getElementById('logoutBtn').addEventListener('click', logout);
 
+  const uploadMode = sessionStorage.getItem('uploadMode');
   const fileId = sessionStorage.getItem('fileId');
-  if (!fileId) {
+  const parametricGeometry = sessionStorage.getItem('parametricGeometry');
+
+  // If neither DXF fileId nor parametric geometry exists, send back to upload
+  if (!fileId && (!uploadMode || uploadMode !== 'parametric' || !parametricGeometry)) {
     window.location.replace('upload.html');
     return;
   }
@@ -71,13 +72,28 @@ const init = () => {
     quoteBtn.textContent = 'Calculating…';
 
     try {
-      const quoteData = await getQuote(fileId, material, thickness, quantity, bends, bendAngle, finish);
+      let quoteData;
+
+      if (uploadMode === 'parametric') {
+        // Parametric flow — use geometry from sessionStorage
+        const geometry = JSON.parse(parametricGeometry);
+        quoteData = await getQuote(
+          geometry.fileId,
+          material, thickness, quantity, bends, bendAngle, finish
+        );
+      } else {
+        // DXF flow — use fileId from sessionStorage
+        quoteData = await getQuote(
+          fileId,
+          material, thickness, quantity, bends, bendAngle, finish
+        );
+      }
 
       const inputs = { material, thickness, quantity, bends, bendAngle, finish };
       sessionStorage.setItem('quoteData', JSON.stringify(quoteData));
       sessionStorage.setItem('inputs', JSON.stringify(inputs));
-
       window.location.href = 'quote.html';
+
     } catch (err) {
       const details = err.details;
       if (Array.isArray(details) && details.length > 0) {
