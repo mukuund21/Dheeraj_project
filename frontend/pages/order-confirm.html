@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Manufacturing Quotation System</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav__brand">Manufacturing Quotation</span>
+    <div class="nav__links">
+      <a href="dashboard.html">My Orders</a>
+      <button class="btn btn--secondary btn--sm" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-body">
+
+      <div class="steps">
+        <div class="step step--done">
+          <div class="step__num">✓</div>
+          <span class="step__label">Upload</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step step--done">
+          <div class="step__num">✓</div>
+          <span class="step__label">Configure</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step step--done">
+          <div class="step__num">✓</div>
+          <span class="step__label">Quote</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step step--active">
+          <div class="step__num">4</div>
+          <span class="step__label">Confirm</span>
+        </div>
+      </div>
+
+      <div class="card card--white" style="text-align: center; padding: 2.5rem 2rem;">
+        <div class="success-icon">✅</div>
+        <h1 style="margin-bottom: 0.5rem;">Order Placed!</h1>
+        <p style="color:#6b7280; margin-bottom: 0.5rem;">
+          Your order has been received. A confirmation email is on its way.
+        </p>
+        <div class="order-id-display" id="orderId">—</div>
+      </div>
+
+      <div class="card" style="margin-top: 1.25rem;">
+        <h2 style="margin-bottom: 1rem;">Order summary</h2>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="summary-item__label">Material</div>
+            <div class="summary-item__value" id="sumMaterial">—</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-item__label">Finish</div>
+            <div class="summary-item__value" id="sumFinish">—</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-item__label">Quantity</div>
+            <div class="summary-item__value" id="sumQuantity">—</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-item__label">Total price</div>
+            <div class="summary-item__value" id="sumTotal">—</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-item__label">Lead time</div>
+            <div class="summary-item__value" id="sumLeadTime">—</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-item__label">Status</div>
+            <div class="summary-item__value">
+              <span class="badge badge--placed">Placed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-actions">
+        <a href="order-tracking.html" class="btn btn--primary" id="trackBtn">
+          Track My Order
+        </a>
+        <a href="dashboard.html" class="btn btn--secondary">
+          View All Orders
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/api-client.js"></script>
+  <script src="/js/order-manager.js"></script>
+</body>
+</html>

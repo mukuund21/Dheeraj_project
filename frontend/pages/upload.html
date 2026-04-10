@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload DXF — Manufacturing Quotation System</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav__brand">Manufacturing Quotation</span>
+    <div class="nav__links">
+      <a href="dashboard.html">My Orders</a>
+      <button class="btn btn--secondary btn--sm" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-body">
+
+      <div class="steps">
+        <div class="step step--active">
+          <div class="step__num">1</div>
+          <span class="step__label">Upload</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <span class="step__label">Configure</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <span class="step__label">Quote</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <span class="step__label">Confirm</span>
+        </div>
+      </div>
+
+      <h1 class="page-title">Upload your DXF file</h1>
+
+      <div class="card">
+        <div class="dropzone" id="dropzone">
+          <input
+            type="file"
+            id="dxfInput"
+            class="dropzone__input"
+            accept=".dxf"
+          >
+          <span class="dropzone__icon">📂</span>
+          <p class="dropzone__text">Drag and drop your DXF file here</p>
+          <p class="dropzone__sub">or click to browse — .dxf files only, max 10MB</p>
+        </div>
+
+        <div id="fileSelected" class="file-selected hidden">
+          📄 <span id="fileName"></span>
+        </div>
+
+        <div id="errorMsg" class="msg msg--error hidden"></div>
+
+        <div class="page-actions">
+          <button class="btn btn--primary" id="uploadBtn" disabled>
+            Upload File
+          </button>
+        </div>
+      </div>
+
+      <div id="resultsSection" class="card hidden" style="margin-top: 1.25rem;">
+        <h2 style="margin-bottom: 1rem;">DXF Analysis Results</h2>
+
+        <div class="geometry-grid">
+          <div class="geometry-item">
+            <div class="geometry-item__label">Perimeter</div>
+            <div class="geometry-item__value"><span id="resPerimeter">—</span> mm</div>
+          </div>
+          <div class="geometry-item">
+            <div class="geometry-item__label">Width</div>
+            <div class="geometry-item__value"><span id="resWidth">—</span> mm</div>
+          </div>
+          <div class="geometry-item">
+            <div class="geometry-item__label">Height</div>
+            <div class="geometry-item__value"><span id="resHeight">—</span> mm</div>
+          </div>
+          <div class="geometry-item">
+            <div class="geometry-item__label">Entities</div>
+            <div class="geometry-item__value"><span id="resEntities">—</span></div>
+          </div>
+        </div>
+
+        <div class="page-actions" style="margin-top: 1.5rem;">
+          <button class="btn btn--primary" id="continueBtn">
+            Continue to Configure →
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/api-client.js"></script>
+  <script src="/js/dxf-upload.js"></script>
+</body>
+</html>

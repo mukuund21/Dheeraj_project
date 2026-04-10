@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order — Manufacturing Quotation System</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav__brand">Manufacturing Quotation</span>
+    <div class="nav__links">
+      <a href="dashboard.html">My Orders</a>
+      <button class="btn btn--secondary btn--sm" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-body">
+
+      <h1 class="page-title">Track your order</h1>
+
+      <div class="card" style="margin-bottom: 1.25rem;">
+        <div style="display: flex; gap: 0.75rem; align-items: flex-end; flex-wrap: wrap;">
+          <div class="form-group" style="flex: 1; min-width: 200px; margin-bottom: 0;">
+            <label class="form-label" for="orderIdInput">Order ID</label>
+            <input
+              id="orderIdInput"
+              type="text"
+              class="form-control"
+              placeholder="ORD-2024-XXXX"
+            >
+          </div>
+          <button class="btn btn--primary" id="searchBtn">Search</button>
+        </div>
+        <div id="searchError" class="msg msg--error hidden" style="margin-top: 0.75rem;"></div>
+      </div>
+
+      <div id="trackingSection" class="hidden">
+        <div class="card card--white" style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <div style="font-size:0.8rem; color:#6b7280;">Order ID</div>
+              <div style="font-weight:700; font-size:1.1rem;" id="trackOrderId">—</div>
+            </div>
+            <div>
+              <div style="font-size:0.8rem; color:#6b7280;">Current status</div>
+              <div id="trackStatus">—</div>
+            </div>
+            <div>
+              <div style="font-size:0.8rem; color:#6b7280;">Placed</div>
+              <div style="font-size:0.9rem;" id="trackDate">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 style="margin-bottom: 1.25rem;">Status timeline</h2>
+
+          <ul class="timeline" id="timeline">
+            <!-- Populated by tracking.js -->
+          </ul>
+
+          <p class="refresh-note" id="refreshNote">
+            ↻ Updates every 30 seconds
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/api-client.js"></script>
+  <script src="/js/order-tracker.js"></script>
+</body>
+</html>

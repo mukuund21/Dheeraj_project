@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — All Orders</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav__brand">Admin Panel</span>
+    <div class="nav__links">
+      <a href="admin-pricing.html">Pricing Config</a>
+      <button class="btn btn--secondary btn--sm" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-body">
+
+      <h1 class="page-title">All Orders</h1>
+
+      <div class="card" style="margin-bottom: 1.25rem;">
+        <div style="display: flex; gap: 0.75rem; align-items: flex-end; flex-wrap: wrap;">
+          <div class="form-group" style="margin-bottom: 0; min-width: 180px;">
+            <label class="form-label" for="statusFilter">Filter by status</label>
+            <select id="statusFilter" class="form-control">
+              <option value="">All statuses</option>
+              <option value="Placed">Placed</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Cutting">Cutting</option>
+              <option value="Bending">Bending</option>
+              <option value="Finishing">Finishing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+            </select>
+          </div>
+          <button class="btn btn--primary" id="applyFilterBtn">Apply</button>
+        </div>
+      </div>
+
+      <div id="loadingMsg" class="msg msg--info">Loading orders…</div>
+      <div id="errorMsg" class="msg msg--error hidden"></div>
+
+      <div id="emptyState" class="empty-state hidden">
+        <div style="font-size:2.5rem;">📋</div>
+        <p>No orders found for the selected filter.</p>
+      </div>
+
+      <div id="tableSection" class="hidden">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Update status</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody">
+              <!-- Populated by admin.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination">
+          <span class="pagination__info" id="pageInfo"></span>
+          <button class="btn btn--secondary btn--sm" id="prevBtn" disabled>← Prev</button>
+          <button class="btn btn--secondary btn--sm" id="nextBtn">Next →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/api-client.js"></script>
+  <script src="/js/admin-panel.js"></script>
+</body>
+</html>

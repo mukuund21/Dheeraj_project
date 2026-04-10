@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      String   @default("customer")
+  createdAt DateTime @default(now())
+  orders    Order[]
+}
+
+model Order {
+  id              String          @id
+  userId          String
+  user            User            @relation(fields: [userId], references: [id])
+  status          String          @default("Placed")
+  totalPrice      Float
+  inputs          String
+  pricingSnapshot String
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  statusHistory   StatusHistory[]
+  dxfFile         DXFFile?
+}
+
+model StatusHistory {
+  id        String   @id @default(uuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id])
+  status    String
+  timestamp DateTime @default(now())
+}
+
+model PricingConfig {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model DXFFile {
+  id                String @id @default(uuid())
+  orderId           String @unique
+  order             Order  @relation(fields: [orderId], references: [id])
+  filename          String
+  originalName      String
+  perimeter         Float
+  boundingBoxWidth  Float
+  boundingBoxHeight Float
+  entityCount       Int
+}

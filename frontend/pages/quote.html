@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Quote — Manufacturing Quotation System</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav__brand">Manufacturing Quotation</span>
+    <div class="nav__links">
+      <a href="dashboard.html">My Orders</a>
+      <button class="btn btn--secondary btn--sm" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-body">
+
+      <div class="steps">
+        <div class="step step--done">
+          <div class="step__num">✓</div>
+          <span class="step__label">Upload</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step step--done">
+          <div class="step__num">✓</div>
+          <span class="step__label">Configure</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step step--active">
+          <div class="step__num">3</div>
+          <span class="step__label">Quote</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <span class="step__label">Confirm</span>
+        </div>
+      </div>
+
+      <h1 class="page-title">Your quote</h1>
+
+      <div class="card card--white">
+        <h2 style="margin-bottom: 1.25rem;">Price breakdown</h2>
+
+        <table class="price-table">
+          <tbody>
+            <tr>
+              <td>Material cost</td>
+              <td id="materialCost">—</td>
+            </tr>
+            <tr>
+              <td>Cutting cost</td>
+              <td id="cuttingCost">—</td>
+            </tr>
+            <tr>
+              <td>Bending cost</td>
+              <td id="bendingCost">—</td>
+            </tr>
+            <tr>
+              <td>Finishing cost</td>
+              <td id="finishingCost">—</td>
+            </tr>
+            <tr>
+              <td>Subtotal</td>
+              <td id="subtotal">—</td>
+            </tr>
+            <tr>
+              <td>Margin</td>
+              <td id="margin">—</td>
+            </tr>
+            <tr>
+              <td>Unit price</td>
+              <td id="unitPrice">—</td>
+            </tr>
+            <tr>
+              <td>Bulk discount (<span id="discountPct">0</span>%)</td>
+              <td id="bulkDiscount">—</td>
+            </tr>
+            <tr class="price-divider"><td colspan="2"></td></tr>
+            <tr class="price-total">
+              <td>Total (<span id="totalQty">—</span> units)</td>
+              <td id="totalPrice">—</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="msg msg--info" style="margin-top: 1.25rem;">
+          Estimated lead time: <strong><span id="leadTime">—</span> working days</strong>
+        </div>
+      </div>
+
+      <div class="page-actions">
+        <button class="btn btn--primary" id="placeOrderBtn">
+          Place Order
+        </button>
+        <a href="configure.html" class="btn btn--secondary">
+          ← Reconfigure
+        </a>
+      </div>
+
+      <div id="errorMsg" class="msg msg--error hidden"></div>
+
+    </div>
+  </div>
+
+  <script src="/js/api-client.js"></script>
+  <script src="/js/quote-view.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configure — Manufacturing Quotation System</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav__brand">Manufacturing Quotation</span>
+    <div class="nav__links">
+      <a href="dashboard.html">My Orders</a>
+      <button class="btn btn--secondary btn--sm" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-body">
+
+      <div class="steps">
+        <div class="step step--done">
+          <div class="step__num">✓</div>
+          <span class="step__label">Upload</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step step--active">
+          <div class="step__num">2</div>
+          <span class="step__label">Configure</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <span class="step__label">Quote</span>
+        </div>
+        <div class="step__connector"></div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <span class="step__label">Confirm</span>
+        </div>
+      </div>
+
+      <h1 class="page-title">Configure your part</h1>
+
+      <div class="card">
+        <form id="configForm" novalidate>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="material">Material</label>
+              <select id="material" class="form-control" required>
+                <option value="">Select material…</option>
+                <option value="steel">Steel</option>
+                <option value="aluminium">Aluminium</option>
+                <option value="copper">Copper</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="finish">Surface finish</label>
+              <select id="finish" class="form-control" required>
+                <option value="">Select finish…</option>
+                <option value="none">None</option>
+                <option value="powder_coat">Powder Coat</option>
+                <option value="galvanize">Galvanize</option>
+                <option value="zinc_plate">Zinc Plate</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="thickness">Thickness (mm)</label>
+              <input
+                id="thickness"
+                type="number"
+                class="form-control"
+                min="0.1"
+                step="0.1"
+                placeholder="e.g. 3"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="quantity">Quantity</label>
+              <input
+                id="quantity"
+                type="number"
+                class="form-control"
+                min="1"
+                step="1"
+                placeholder="e.g. 10"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bends">Number of bends</label>
+              <input
+                id="bends"
+                type="number"
+                class="form-control"
+                min="0"
+                step="1"
+                placeholder="e.g. 4"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bendAngle">Bend angle (degrees)</label>
+              <input
+                id="bendAngle"
+                type="number"
+                class="form-control"
+                min="0"
+                max="180"
+                step="0.5"
+                placeholder="e.g. 90"
+                required
+              >
+            </div>
+          </div>
+
+          <div id="errorMsg" class="msg msg--error hidden">
+            <ul class="error-list" id="errorList"></ul>
+          </div>
+
+          <div class="page-actions">
+            <button type="submit" class="btn btn--primary" id="quoteBtn">
+              Get Quote
+            </button>
+            <a href="upload.html" class="btn btn--secondary">← Back</a>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/api-client.js"></script>
+  <script src="/js/job-config.js"></script>
+</body>
+</html>

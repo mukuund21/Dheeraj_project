@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders — Manufacturing Quotation System</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <span class="nav__brand">Manufacturing Quotation</span>
+    <div class="nav__links">
+      <a href="upload.html" class="btn btn--primary btn--sm">New Quote</a>
+      <button class="btn btn--secondary btn--sm" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-body">
+
+      <h1 class="page-title">My Orders</h1>
+
+      <div id="loadingMsg" class="msg msg--info">Loading your orders…</div>
+      <div id="errorMsg" class="msg msg--error hidden"></div>
+
+      <div id="emptyState" class="empty-state hidden">
+        <div style="font-size:2.5rem;">📋</div>
+        <p>You haven't placed any orders yet.</p>
+        <a href="upload.html" class="btn btn--primary" style="margin-top:1rem;">
+          Get your first quote
+        </a>
+      </div>
+
+      <div id="tableSection" class="hidden">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="ordersBody">
+              <!-- Populated by order.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/api-client.js"></script>
+  <script src="/js/order-manager.js"></script>
+</body>
+</html>
