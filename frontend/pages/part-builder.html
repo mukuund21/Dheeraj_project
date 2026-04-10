@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part Builder — Manufacturing Quotation</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">Manufacturing Quotation</div>
+    <div class="nav-links">
+      <a href="upload.html" class="nav-link">Upload DXF Instead</a>
+      <button class="btn btn-outline" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1 class="page-title">Build Your Part</h1>
+    <p class="page-subtitle">No CAD software needed — configure your part dimensions, holes and bends below.</p>
+
+    <div class="builder-layout">
+
+      <!-- LEFT: SVG Preview -->
+      <div class="builder-preview">
+        <div class="preview-header">
+          <h3>Live Preview</h3>
+          <span class="preview-note">Flat pattern view</span>
+        </div>
+        <div class="svg-container">
+          <svg id="part-preview" width="100%" viewBox="0 0 400 300">
+            <text x="200" y="150" text-anchor="middle" 
+                  style="fill:#888;font-size:14px">
+              Configure your part to see preview
+            </text>
+          </svg>
+        </div>
+        <div class="geometry-summary" id="geometry-summary" style="display:none">
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">Total cutting length</span>
+              <span class="summary-value" id="s-cutting">—</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Flat blank size</span>
+              <span class="summary-value" id="s-blank">—</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Total bends</span>
+              <span class="summary-value" id="s-bends">—</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Hole perimeter</span>
+              <span class="summary-value" id="s-holes">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Configuration Panel -->
+      <div class="builder-config">
+
+        <!-- Base Shape -->
+        <div class="config-section">
+          <h3 class="config-section-title">Base Shape</h3>
+          <div class="form-group">
+            <label>Shape type</label>
+            <select id="base-shape" onchange="onShapeChange()">
+              <option value="rectangle">Rectangle</option>
+              <option value="l-shape">L-Shape</option>
+              <option value="u-channel">U-Channel</option>
+            </select>
+          </div>
+          <div class="form-row" id="rect-dims">
+            <div class="form-group">
+              <label>Length (mm)</label>
+              <input type="number" id="dim-length" placeholder="e.g. 100" 
+                     oninput="updatePreview()">
+            </div>
+            <div class="form-group">
+              <label>Width (mm)</label>
+              <input type="number" id="dim-width" placeholder="e.g. 80" 
+                     oninput="updatePreview()">
+            </div>
+          </div>
+        </div>
+
+        <!-- Wall Selector -->
+        <div class="config-section">
+          <h3 class="config-section-title">Configure Walls</h3>
+          <div class="wall-tabs" id="wall-tabs"></div>
+          <div class="wall-content" id="wall-content"></div>
+        </div>
+
+        <!-- Wall Summary Table -->
+        <div class="config-section" id="wall-summary-section" 
+             style="display:none">
+          <h3 class="config-section-title">Wall Summary</h3>
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Wall</th>
+                <th>Holes</th>
+                <th>Cutting added</th>
+                <th>Bends</th>
+              </tr>
+            </thead>
+            <tbody id="wall-summary-body"></tbody>
+          </table>
+        </div>
+
+        <!-- Actions -->
+        <div class="config-actions">
+          <button class="btn btn-primary" onclick="proceedToQuote()">
+            Get Quote →
+          </button>
+          <button class="btn btn-outline" onclick="resetBuilder()">
+            Reset
+          </button>
+        </div>
+
+        <div id="builder-error" class="error-message" 
+             style="display:none"></div>
+
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="../js/api-client.js"></script>
+  <script src="../js/svg-preview.js"></script>
+  <script src="../js/part-builder.js"></script>
+</body>
+</html>
