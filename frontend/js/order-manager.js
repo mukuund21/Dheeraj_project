@@ -13,7 +13,7 @@ const logout = () => {
   window.location.replace('login.html');
 };
 
-const fmt = (num) => `£${Number(num).toFixed(2)}`;
+const fmt = (num) => `₹${Number(num).toFixed(2)}`;
 
 const formatDate = (iso) => {
   const d = new Date(iso);
