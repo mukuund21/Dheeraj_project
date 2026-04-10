@@ -24,7 +24,11 @@ const ensureUploadDir = () => {
 };
 
 const registerMiddleware = () => {
-  app.use(cors());
+  app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
   app.use(express.json());
 };
 
