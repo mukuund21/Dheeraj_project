@@ -38,9 +38,9 @@ const registerRoutes = () => {
   app.use('/api/quote', quoteRoutes);
   app.use('/api/order', orderRoutes);
   app.use('/api/admin', adminRoutes);
+  app.use(express.static(path.join(__dirname, '../frontend')));
   app.use(errorHandler);
 };
-
 const startServer = async () => {
   await prisma.$connect();
 
