@@ -48,13 +48,22 @@ const registerRoutes = () => {
 };
 
 const startServer = async () => {
-  await prisma.$connect();
+  try {
+    await prisma.$connect();
+    console.log('✅ Prisma connected');
+  } catch (err) {
+    console.log('❌ Prisma connection failed');
+    console.log(err);
+  }
+
   ensureUploadDir();
   registerMiddleware();
   registerRoutes();
+
   const PORT = process.env.PORT || 3000;
+
   app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
     console.log(`CORS origin: ${process.env.ALLOWED_ORIGIN || '*'}`);
   });
 };
